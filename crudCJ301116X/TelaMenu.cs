@@ -48,5 +48,15 @@ namespace crudCJ301116X
             ped.ShowDialog();
             this.Visible = true;
         }
+
+        private void lOGOUTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show("Tem certeza que deseja realizar logout?", "LOGOUT", MessageBoxButtons.YesNo);
+            if (resultado == DialogResult.Yes)
+            {
+                MessageBox.Show("REALIZANDO LOGOUT, OBRIGADO POR UTILIZAR O SISTEMA!");
+                Close();
+            }
+        }
     }
 }

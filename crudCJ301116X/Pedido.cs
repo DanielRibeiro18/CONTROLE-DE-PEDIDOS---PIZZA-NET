@@ -10,24 +10,41 @@ namespace crudCJ301116X
     internal class Pedido
     {
         private int _id;
-        private string _valor;
-        private string _quantidade;
+        private decimal _valor;
+        private int _quantidade;
         private int _idpizza;
-        private string _date;
+        private DateTime _date;
+        private string _sabor;
 
 
-        public Pedido(string valor, string quantidade, int idpizza, string date)
+
+        public Pedido(decimal valor, int quantidade, int idpizza, DateTime date)
         {
-            Valor = valor;
-            Quantidade = quantidade;
+            _valor = valor;
+            _quantidade = quantidade;
             _idpizza = idpizza;
-            Date = date;
-            
+            _date = date;
 
         }
 
-        public Pedido(int id, string valor, string quantidade, int idpizza, string date) :
+        public Pedido(int id, decimal valor, int quantidade, int idpizza, DateTime date) :
             this(valor, quantidade, idpizza, date)
+        {
+            _id = id;
+
+        }
+
+        public Pedido(decimal valor, int quantidade, string sabor, DateTime date)
+        {
+            _valor = valor;
+            _quantidade = quantidade;
+            Sabor = sabor;
+            _date = date;
+
+        }
+
+        public Pedido(int id, decimal valor, int quantidade, string sabor, DateTime date) :
+            this(valor, quantidade, sabor, date)
         {
             _id = id;
 
@@ -41,27 +58,17 @@ namespace crudCJ301116X
         }
 
         //Validação do Valor.
-        public string Valor
+        public decimal Valor
         {
             get { return _valor; }
-            set
-            {
-                if (string.IsNullOrEmpty(value))
-                    throw new Exception("O valor informado não é um texto válido");
-                _valor = value;
-            }
+
         }
 
         //Validação da quantidade.
-        public string Quantidade
+        public int Quantidade
         {
             get { return _quantidade; }
-            set
-            {
-                if (string.IsNullOrEmpty(value))
-                    throw new Exception("O valor informado não é um texto válido");
-                _quantidade = value;
-            }
+
         }
 
         public int Idpizza
@@ -70,14 +77,21 @@ namespace crudCJ301116X
         }
 
         //Validação da Data.
-        public string Date
+        public DateTime Date
         {
             get { return _date; }
+            
+        }
+
+        //Validação do Sabor.
+        public string Sabor
+        {
+            get { return _sabor; }
             set
             {
                 if (string.IsNullOrEmpty(value))
-                    throw new Exception("O valor informado não é um texto válido");
-                _date = value;
+                    throw new Exception("O sabor informado não é um texto válido");
+                _sabor = value;
             }
         }
 

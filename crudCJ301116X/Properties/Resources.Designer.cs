@@ -103,6 +103,16 @@ namespace crudCJ301116X.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FINALIZAR2 {
+            get {
+                object obj = ResourceManager.GetObject("FINALIZAR2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fundologin {
             get {
                 object obj = ResourceManager.GetObject("fundologin", resourceCulture);
@@ -153,6 +163,16 @@ namespace crudCJ301116X.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap pdf {
+            get {
+                object obj = ResourceManager.GetObject("pdf", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pesquisar {
             get {
                 object obj = ResourceManager.GetObject("pesquisar", resourceCulture);
@@ -166,6 +186,36 @@ namespace crudCJ301116X.Properties {
         internal static System.Drawing.Bitmap pizza {
             get {
                 object obj = ResourceManager.GetObject("pizza", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pizzamenu {
+            get {
+                object obj = ResourceManager.GetObject("pizzamenu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pizzamenu2 {
+            get {
+                object obj = ResourceManager.GetObject("pizzamenu2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap procurar3 {
+            get {
+                object obj = ResourceManager.GetObject("procurar3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

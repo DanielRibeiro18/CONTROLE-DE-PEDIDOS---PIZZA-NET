@@ -10,43 +10,43 @@ namespace crudCJ301116X
     public class EncryptDecrypt
     {       
 
-        public string base64Encode(string sData)
+        public string base64Encode(string dados)
         {
             try
             {
-                byte[] encData_byte = new byte[sData.Length];
+                byte[] encodeData = new byte[dados.Length];
 
-                encData_byte = System.Text.Encoding.UTF8.GetBytes(sData);
+                encodeData = System.Text.Encoding.UTF8.GetBytes(dados);
 
-                string encodedData = Convert.ToBase64String(encData_byte);
+                string encoded = Convert.ToBase64String(encodeData);
 
-                return encodedData;
+                return encoded;
 
             }
             catch (Exception ex)
             {
-                throw new Exception("Error in base64Encode" + ex.Message);
+                throw new Exception("Erro na criptografia!" + ex.Message);
             }
         }
 
-        public string base64Decode(string sData)
+        public string base64Decode(string dados)
         {
 
             System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
 
             System.Text.Decoder utf8Decode = encoder.GetDecoder();
 
-            byte[] todecode_byte = Convert.FromBase64String(sData);
+            byte[] todecode = Convert.FromBase64String(dados);
 
-            int charCount = utf8Decode.GetCharCount(todecode_byte, 0, todecode_byte.Length);
+            int charCount = utf8Decode.GetCharCount(todecode, 0, todecode.Length);
 
-            char[] decoded_char = new char[charCount];
+            char[] decoded = new char[charCount];
 
-            utf8Decode.GetChars(todecode_byte, 0, todecode_byte.Length, decoded_char, 0);
+            utf8Decode.GetChars(todecode, 0, todecode.Length, decoded, 0);
 
-            string result = new String(decoded_char);
+            string resultado = new String(decoded);
 
-            return result;
+            return resultado;
 
         }
 

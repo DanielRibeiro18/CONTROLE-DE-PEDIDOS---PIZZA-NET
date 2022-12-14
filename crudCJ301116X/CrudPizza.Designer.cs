@@ -45,8 +45,8 @@
             this.clhNFatia = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clhPreco = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clhDisponibilidade = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.clhImagem = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chbDisponibilidade = new System.Windows.Forms.CheckBox();
-            this.mtbPreco = new System.Windows.Forms.MaskedTextBox();
             this.cmbTamanho = new System.Windows.Forms.ComboBox();
             this.cmbNFatia = new System.Windows.Forms.ComboBox();
             this.btnRetornar = new System.Windows.Forms.Button();
@@ -54,6 +54,12 @@
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnInserir = new System.Windows.Forms.Button();
+            this.ptbPizza = new System.Windows.Forms.PictureBox();
+            this.btnProcurar = new System.Windows.Forms.Button();
+            this.txbCaminhoImagem = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txbPrecoUnit = new crudCJ301116X.txbValor();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbPizza)).BeginInit();
             this.SuspendLayout();
             // 
             // lblMatricula
@@ -88,7 +94,7 @@
             // txbID
             // 
             this.txbID.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbID.Location = new System.Drawing.Point(998, 75);
+            this.txbID.Location = new System.Drawing.Point(998, 65);
             this.txbID.Name = "txbID";
             this.txbID.ReadOnly = true;
             this.txbID.Size = new System.Drawing.Size(44, 24);
@@ -98,7 +104,7 @@
             // 
             this.lblID.AutoSize = true;
             this.lblID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblID.Location = new System.Drawing.Point(873, 77);
+            this.lblID.Location = new System.Drawing.Point(873, 67);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(119, 20);
             this.lblID.TabIndex = 62;
@@ -108,7 +114,7 @@
             // 
             this.txbSabor.BackColor = System.Drawing.SystemColors.Window;
             this.txbSabor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbSabor.Location = new System.Drawing.Point(218, 113);
+            this.txbSabor.Location = new System.Drawing.Point(183, 96);
             this.txbSabor.Name = "txbSabor";
             this.txbSabor.Size = new System.Drawing.Size(345, 24);
             this.txbSabor.TabIndex = 39;
@@ -117,27 +123,27 @@
             // 
             this.lblNFatia.AutoSize = true;
             this.lblNFatia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNFatia.Location = new System.Drawing.Point(586, 115);
+            this.lblNFatia.Location = new System.Drawing.Point(592, 99);
             this.lblNFatia.Name = "lblNFatia";
             this.lblNFatia.Size = new System.Drawing.Size(134, 20);
             this.lblNFatia.TabIndex = 47;
-            this.lblNFatia.Text = "Numero de fatias:";
+            this.lblNFatia.Text = "Número de fatias:";
             // 
             // lblPreco
             // 
             this.lblPreco.AutoSize = true;
             this.lblPreco.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPreco.Location = new System.Drawing.Point(644, 162);
+            this.lblPreco.Location = new System.Drawing.Point(592, 131);
             this.lblPreco.Name = "lblPreco";
-            this.lblPreco.Size = new System.Drawing.Size(54, 20);
+            this.lblPreco.Size = new System.Drawing.Size(89, 20);
             this.lblPreco.TabIndex = 45;
-            this.lblPreco.Text = "Preço:";
+            this.lblPreco.Text = "Preço (R$):";
             // 
             // lblTamanho
             // 
             this.lblTamanho.AutoSize = true;
             this.lblTamanho.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTamanho.Location = new System.Drawing.Point(130, 157);
+            this.lblTamanho.Location = new System.Drawing.Point(66, 126);
             this.lblTamanho.Name = "lblTamanho";
             this.lblTamanho.Size = new System.Drawing.Size(80, 20);
             this.lblTamanho.TabIndex = 44;
@@ -147,7 +153,7 @@
             // 
             this.lblSabor.AutoSize = true;
             this.lblSabor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSabor.Location = new System.Drawing.Point(157, 115);
+            this.lblSabor.Location = new System.Drawing.Point(66, 95);
             this.lblSabor.Name = "lblSabor";
             this.lblSabor.Size = new System.Drawing.Size(56, 20);
             this.lblSabor.TabIndex = 40;
@@ -161,7 +167,8 @@
             this.clhTamanho,
             this.clhNFatia,
             this.clhPreco,
-            this.clhDisponibilidade});
+            this.clhDisponibilidade,
+            this.clhImagem});
             this.ltvPizza.FullRowSelect = true;
             this.ltvPizza.HideSelection = false;
             this.ltvPizza.Location = new System.Drawing.Point(187, 398);
@@ -176,12 +183,12 @@
             // clhId
             // 
             this.clhId.Text = "Id";
-            this.clhId.Width = 101;
+            this.clhId.Width = 49;
             // 
             // clhSabor
             // 
             this.clhSabor.Text = "Sabor";
-            this.clhSabor.Width = 111;
+            this.clhSabor.Width = 82;
             // 
             // clhTamanho
             // 
@@ -203,29 +210,21 @@
             this.clhDisponibilidade.Text = "Disponibilidade";
             this.clhDisponibilidade.Width = 122;
             // 
+            // clhImagem
+            // 
+            this.clhImagem.Text = "Imagem";
+            this.clhImagem.Width = 85;
+            // 
             // chbDisponibilidade
             // 
             this.chbDisponibilidade.AutoSize = true;
             this.chbDisponibilidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbDisponibilidade.Location = new System.Drawing.Point(134, 202);
+            this.chbDisponibilidade.Location = new System.Drawing.Point(70, 170);
             this.chbDisponibilidade.Name = "chbDisponibilidade";
             this.chbDisponibilidade.Size = new System.Drawing.Size(143, 24);
             this.chbDisponibilidade.TabIndex = 68;
             this.chbDisponibilidade.Text = "Está disponível?";
             this.chbDisponibilidade.UseVisualStyleBackColor = true;
-            // 
-            // mtbPreco
-            // 
-            this.mtbPreco.BackColor = System.Drawing.Color.Silver;
-            this.mtbPreco.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.mtbPreco.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtbPreco.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.mtbPreco.Location = new System.Drawing.Point(704, 163);
-            this.mtbPreco.Mask = "$ 00.00";
-            this.mtbPreco.Name = "mtbPreco";
-            this.mtbPreco.Size = new System.Drawing.Size(100, 19);
-            this.mtbPreco.TabIndex = 70;
-            this.mtbPreco.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
             // 
             // cmbTamanho
             // 
@@ -233,10 +232,10 @@
             this.cmbTamanho.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbTamanho.FormattingEnabled = true;
             this.cmbTamanho.Items.AddRange(new object[] {
-            "MEDIA",
-            "GRANDE",
-            "FAMILIA"});
-            this.cmbTamanho.Location = new System.Drawing.Point(218, 154);
+            "BROTINHO",
+            "MÉDIA",
+            "GRANDE"});
+            this.cmbTamanho.Location = new System.Drawing.Point(183, 123);
             this.cmbTamanho.Name = "cmbTamanho";
             this.cmbTamanho.Size = new System.Drawing.Size(156, 28);
             this.cmbTamanho.TabIndex = 73;
@@ -250,9 +249,9 @@
             "6",
             "8",
             "10"});
-            this.cmbNFatia.Location = new System.Drawing.Point(726, 107);
+            this.cmbNFatia.Location = new System.Drawing.Point(767, 92);
             this.cmbNFatia.Name = "cmbNFatia";
-            this.cmbNFatia.Size = new System.Drawing.Size(78, 28);
+            this.cmbNFatia.Size = new System.Drawing.Size(100, 28);
             this.cmbNFatia.TabIndex = 74;
             // 
             // btnRetornar
@@ -277,7 +276,7 @@
             this.btnLimpar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnLimpar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLimpar.Location = new System.Drawing.Point(521, 270);
+            this.btnLimpar.Location = new System.Drawing.Point(460, 270);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(90, 109);
             this.btnLimpar.TabIndex = 58;
@@ -293,7 +292,7 @@
             this.btnExcluir.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnExcluir.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnExcluir.Location = new System.Drawing.Point(617, 270);
+            this.btnExcluir.Location = new System.Drawing.Point(556, 270);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(90, 109);
             this.btnExcluir.TabIndex = 59;
@@ -308,7 +307,7 @@
             this.btnEditar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnEditar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnEditar.Location = new System.Drawing.Point(425, 270);
+            this.btnEditar.Location = new System.Drawing.Point(364, 270);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(90, 109);
             this.btnEditar.TabIndex = 57;
@@ -325,7 +324,7 @@
             this.btnInserir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnInserir.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnInserir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInserir.Location = new System.Drawing.Point(329, 270);
+            this.btnInserir.Location = new System.Drawing.Point(268, 270);
             this.btnInserir.Name = "btnInserir";
             this.btnInserir.Size = new System.Drawing.Size(90, 109);
             this.btnInserir.TabIndex = 55;
@@ -334,15 +333,77 @@
             this.btnInserir.UseVisualStyleBackColor = true;
             this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
             // 
+            // ptbPizza
+            // 
+            this.ptbPizza.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ptbPizza.Location = new System.Drawing.Point(767, 170);
+            this.ptbPizza.Name = "ptbPizza";
+            this.ptbPizza.Size = new System.Drawing.Size(100, 94);
+            this.ptbPizza.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ptbPizza.TabIndex = 76;
+            this.ptbPizza.TabStop = false;
+            this.ptbPizza.Click += new System.EventHandler(this.ptbPizza_Click);
+            // 
+            // btnProcurar
+            // 
+            this.btnProcurar.BackgroundImage = global::crudCJ301116X.Properties.Resources.procurar3;
+            this.btnProcurar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnProcurar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnProcurar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnProcurar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnProcurar.Location = new System.Drawing.Point(652, 270);
+            this.btnProcurar.Name = "btnProcurar";
+            this.btnProcurar.Size = new System.Drawing.Size(95, 109);
+            this.btnProcurar.TabIndex = 77;
+            this.btnProcurar.Text = "Procurar imagem";
+            this.btnProcurar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnProcurar.UseVisualStyleBackColor = true;
+            this.btnProcurar.Click += new System.EventHandler(this.btnProcurar_Click);
+            // 
+            // txbCaminhoImagem
+            // 
+            this.txbCaminhoImagem.BackColor = System.Drawing.SystemColors.Window;
+            this.txbCaminhoImagem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbCaminhoImagem.Location = new System.Drawing.Point(596, 193);
+            this.txbCaminhoImagem.Multiline = true;
+            this.txbCaminhoImagem.Name = "txbCaminhoImagem";
+            this.txbCaminhoImagem.ReadOnly = true;
+            this.txbCaminhoImagem.Size = new System.Drawing.Size(151, 71);
+            this.txbCaminhoImagem.TabIndex = 78;
+            this.txbCaminhoImagem.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(592, 170);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 20);
+            this.label1.TabIndex = 80;
+            this.label1.Text = "Imagem:";
+            // 
+            // txbPrecoUnit
+            // 
+            this.txbPrecoUnit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbPrecoUnit.Location = new System.Drawing.Point(767, 131);
+            this.txbPrecoUnit.Name = "txbPrecoUnit";
+            this.txbPrecoUnit.Size = new System.Drawing.Size(100, 26);
+            this.txbPrecoUnit.TabIndex = 79;
+            this.txbPrecoUnit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // CrudPizza
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(1100, 571);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txbPrecoUnit);
+            this.Controls.Add(this.txbCaminhoImagem);
+            this.Controls.Add(this.btnProcurar);
+            this.Controls.Add(this.ptbPizza);
             this.Controls.Add(this.cmbNFatia);
             this.Controls.Add(this.cmbTamanho);
-            this.Controls.Add(this.mtbPreco);
             this.Controls.Add(this.chbDisponibilidade);
             this.Controls.Add(this.ltvPizza);
             this.Controls.Add(this.lblMatricula);
@@ -363,6 +424,7 @@
             this.Name = "CrudPizza";
             this.Text = "CrudPizza";
             this.Load += new System.EventHandler(this.CrudPizza_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.ptbPizza)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -392,8 +454,13 @@
         private System.Windows.Forms.ColumnHeader clhPreco;
         private System.Windows.Forms.ColumnHeader clhDisponibilidade;
         private System.Windows.Forms.CheckBox chbDisponibilidade;
-        private System.Windows.Forms.MaskedTextBox mtbPreco;
         private System.Windows.Forms.ComboBox cmbTamanho;
         private System.Windows.Forms.ComboBox cmbNFatia;
+        private System.Windows.Forms.PictureBox ptbPizza;
+        private System.Windows.Forms.Button btnProcurar;
+        private System.Windows.Forms.TextBox txbCaminhoImagem;
+        private System.Windows.Forms.ColumnHeader clhImagem;
+        private txbValor txbPrecoUnit;
+        private System.Windows.Forms.Label label1;
     }
 }

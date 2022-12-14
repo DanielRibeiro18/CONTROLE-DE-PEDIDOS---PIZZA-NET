@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -60,6 +66,7 @@
       <DependentUpon>Entrada.cs</DependentUpon>
     </Compile>
     <Compile Include="EncryptDecrypt.cs" />
+    <Compile Include="PedidoFinal.cs" />
     <Compile Include="Pedidos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +74,9 @@
       <DependentUpon>Pedidos.cs</DependentUpon>
     </Compile>
     <Compile Include="Pizza.cs" />
+    <Compile Include="txbValor.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Usuario.cs" />
     <Compile Include="Conexao.cs" />
     <Compile Include="CrudCadastro.cs">
@@ -119,6 +129,7 @@
     <EmbeddedResource Include="TelaMenu.resx">
       <DependentUpon>TelaMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -173,6 +184,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\procurarimagem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\procurar3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FINALIZAR2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pdf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pizzamenu.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pizzamenu2.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

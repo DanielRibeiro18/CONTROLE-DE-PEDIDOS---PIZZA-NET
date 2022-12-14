@@ -14,6 +14,7 @@ namespace crudCJ301116X
     {
         private int Id;
 
+
         public CrudPizza()
         {
             InitializeComponent();
@@ -26,7 +27,7 @@ namespace crudCJ301116X
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message, "OCORREU AO CARREGAR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(err.Message, "OCORREU UM ERRO AO CARREGAR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -36,8 +37,10 @@ namespace crudCJ301116X
             txbSabor.Clear();
             cmbTamanho.SelectedItem = null;
             cmbNFatia.SelectedItem = null;
-            mtbPreco.Clear();
+            txbPrecoUnit.Clear();
             chbDisponibilidade.Checked = false;
+            txbCaminhoImagem.Clear();
+            ptbPizza.Image = null;
         }
 
         private void AtualizarListView()
@@ -54,8 +57,9 @@ namespace crudCJ301116X
                     lv.SubItems.Add(pi.Sabor);
                     lv.SubItems.Add(pi.Tamanho);
                     lv.SubItems.Add(pi.NumeroFatia);
-                    lv.SubItems.Add(pi.Preco);
+                    lv.SubItems.Add(pi.Preco.ToString());
                     lv.SubItems.Add(pi.Disponibilidade);
+                    lv.SubItems.Add(pi.Imagem);
                     ltvPizza.Items.Add(lv);
                 }
             }
@@ -69,13 +73,13 @@ namespace crudCJ301116X
 
                 if (chbDisponibilidade.Checked)
                 {
-                    pizzaLida = new Pizza(txbSabor.Text, cmbTamanho.Text, cmbNFatia.Text, mtbPreco.Text, "SIM");
+                    pizzaLida = new Pizza(txbSabor.Text, cmbTamanho.Text, cmbNFatia.Text, decimal.Parse(txbPrecoUnit.Text), "SIM", txbCaminhoImagem.Text);
                     DAO Dao = new DAO();
                     Dao.InserirPizza(pizzaLida);
                 }
                 else if (chbDisponibilidade.Checked == false)
                 {
-                    pizzaLida = new Pizza(txbSabor.Text, cmbTamanho.Text, cmbNFatia.Text, mtbPreco.Text, "NAO");
+                    pizzaLida = new Pizza(txbSabor.Text, cmbTamanho.Text, cmbNFatia.Text, decimal.Parse(txbPrecoUnit.Text), "NAO", txbCaminhoImagem.Text);
                     DAO Dao = new DAO();
                     Dao.InserirPizza(pizzaLida);
                 }
@@ -102,7 +106,7 @@ namespace crudCJ301116X
                     Pizza pizzaEditada;
                     if (chbDisponibilidade.Checked)
                     {
-                        pizzaEditada = new Pizza(Id, txbSabor.Text, cmbTamanho.Text, cmbNFatia.Text, mtbPreco.Text, "SIM");
+                        pizzaEditada = new Pizza(Id, txbSabor.Text, cmbTamanho.Text, cmbNFatia.Text, decimal.Parse(txbPrecoUnit.Text), "SIM", txbCaminhoImagem.Text);
                         DAO Dao = new DAO();
 
                         MessageBox.Show("Pizza de " + txbSabor.Text + " editada com sucesso!", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -112,7 +116,7 @@ namespace crudCJ301116X
 
                     if (chbDisponibilidade.Checked == false)
                     {
-                        pizzaEditada = new Pizza(Id, txbSabor.Text, cmbTamanho.Text, cmbNFatia.Text, mtbPreco.Text, "NAO");
+                        pizzaEditada = new Pizza(Id, txbSabor.Text, cmbTamanho.Text, cmbNFatia.Text, decimal.Parse(txbPrecoUnit.Text), "NAO", txbCaminhoImagem.Text);
                         DAO Dao = new DAO();
 
                         MessageBox.Show("Pizza de " + txbSabor.Text + " editada com sucesso!", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -174,7 +178,7 @@ namespace crudCJ301116X
                 txbSabor.Text = ltvPizza.Items[index].SubItems[1].Text;
                 cmbTamanho.Text = ltvPizza.Items[index].SubItems[2].Text;
                 cmbNFatia.Text = ltvPizza.Items[index].SubItems[3].Text;
-                mtbPreco.Text = ltvPizza.Items[index].SubItems[4].Text;
+                txbPrecoUnit.Text = ltvPizza.Items[index].SubItems[4].Text;
                 if (ltvPizza.Items[index].SubItems[5].Text == "SIM")
                 {
                     chbDisponibilidade.Checked = true;
@@ -183,6 +187,9 @@ namespace crudCJ301116X
                 {
                     chbDisponibilidade.Checked = false;
                 }
+                ptbPizza.ImageLocation = ltvPizza.Items[index].SubItems[6].Text;
+                txbCaminhoImagem.Text = ltvPizza.Items[index].SubItems[6].Text;
+               
             }
             catch (Exception)
             {
@@ -198,6 +205,23 @@ namespace crudCJ301116X
         private void btnLimpar_Click_1(object sender, EventArgs e)
         {
             LimparCampos();
+        }
+
+        private void ptbPizza_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnProcurar_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog imagem = new OpenFileDialog();
+            imagem.Filter = "Procure sua imagem(*.png; *.jpg; *.jpeg; *.gif; *.bmp)|*.png; *.jpg; *.jpeg; *.gif; *.bmp";
+            if (imagem.ShowDialog() == DialogResult.OK)
+            {
+                ptbPizza.Image = new Bitmap(imagem.FileName);
+
+                txbCaminhoImagem.Text = imagem.FileName;
+            }            
         }
     }
 }

@@ -192,8 +192,8 @@ namespace crudCJ301116X
 
                 while (rd.Read())
                 {
-                    Pizza pizza = new Pizza((int)rd["Id"], (string)rd["Sabor"], (string)rd["Tamanho"], (string)rd["NumeroFatia"], (string)rd["Preco"],
-                       (string)rd["Disponibilidade"]);
+                    Pizza pizza = new Pizza((int)rd["Id"], (string)rd["Sabor"], (string)rd["Tamanho"], (string)rd["NumeroFatia"], (decimal)rd["Preco"],
+                       (string)rd["Disponibilidade"], (string)rd["Imagem"]);
                     listaDePizza.Add(pizza);
                 }
                 rd.Close();
@@ -214,7 +214,7 @@ namespace crudCJ301116X
         {
 
             Cmd.Connection = Con.ReturnConnection();
-            Cmd.CommandText = "INSERT INTO Pizza VALUES (@Sabor, @Tamanho, @NumeroFatia, @Preco, @Disponibilidade)";
+            Cmd.CommandText = "INSERT INTO Pizza VALUES (@Sabor, @Tamanho, @NumeroFatia, @Preco, @Disponibilidade, @Imagem)";
 
 
             Cmd.Parameters.AddWithValue("@Sabor", pizza.Sabor);
@@ -222,6 +222,7 @@ namespace crudCJ301116X
             Cmd.Parameters.AddWithValue("@NumeroFatia", pizza.NumeroFatia);
             Cmd.Parameters.AddWithValue("@Preco", pizza.Preco);
             Cmd.Parameters.AddWithValue("@Disponibilidade", pizza.Disponibilidade);
+            Cmd.Parameters.AddWithValue("@Imagem", pizza.Imagem);
 
             try
             {
@@ -242,7 +243,7 @@ namespace crudCJ301116X
 
             Cmd.Connection = Con.ReturnConnection();
             Cmd.CommandText = @"UPDATE Pizza SET Sabor = @Sabor, Tamanho = @Tamanho, NumeroFatia = @NumeroFatia, Preco = @Preco, 
-            Disponibilidade = @Disponibilidade WHERE Id = @Id";
+            Disponibilidade = @Disponibilidade, Imagem = @Imagem WHERE Id = @Id";
 
 
             Cmd.Parameters.AddWithValue("@Id", pizzaEditada.Id);
@@ -251,6 +252,7 @@ namespace crudCJ301116X
             Cmd.Parameters.AddWithValue("@NumeroFatia", pizzaEditada.NumeroFatia);
             Cmd.Parameters.AddWithValue("@Preco", pizzaEditada.Preco);
             Cmd.Parameters.AddWithValue("@Disponibilidade", pizzaEditada.Disponibilidade);
+            Cmd.Parameters.AddWithValue("@Imagem", pizzaEditada.Imagem);
 
             try
             {
@@ -293,21 +295,28 @@ namespace crudCJ301116X
         {
 
             Cmd.Connection = Con.ReturnConnection();
-            Cmd.CommandText = "SELECT * FROM Pedidos";
+
+
+            Cmd.CommandText = "SELECT Pedidos.Id, Pedidos.Valor, Pedidos.Quantidade, Pizza.Sabor, Pedidos.DataPedido FROM Pedidos" +
+                " INNER JOIN Pizza ON Pedidos.Id_Pizza = Pizza.Id";
 
 
 
             List<Pedido> listaDePedido = new List<Pedido>();
+
             try
             {
                 SqlDataReader rd = Cmd.ExecuteReader();
 
                 while (rd.Read())
                 {
-                    Pedido pedido = new Pedido((int)rd["Id"], (string)rd["Valor"], (string)rd["Quantidade"], (int)rd["Id_Pizza"],
-                    (string)rd["DataPedido"]);
+                    Pedido pedido = new Pedido((int)rd["Id"], (decimal)rd["Valor"], (int)rd["Quantidade"], (string)rd["Sabor"],
+                    (DateTime)rd["DataPedido"]);
+                    
+                    
                     listaDePedido.Add(pedido);
                 }
+
                 rd.Close();
             }
             catch (Exception err)
@@ -326,12 +335,12 @@ namespace crudCJ301116X
         {
 
             Cmd.Connection = Con.ReturnConnection();
-            Cmd.CommandText = "INSERT INTO Pedidos VALUES (@Valor, @Quantidade, @IdPizza, @DataPedido)";
+            Cmd.CommandText = "INSERT INTO Pedidos VALUES (@Valor, @Quantidade, @Id_Pizza, @DataPedido)";
 
 
             Cmd.Parameters.AddWithValue("@Valor", pedido.Valor);
             Cmd.Parameters.AddWithValue("@Quantidade", pedido.Quantidade);
-            Cmd.Parameters.AddWithValue("@IdPizza", pedido.Idpizza);
+            Cmd.Parameters.AddWithValue("@Id_Pizza", pedido.Idpizza);
             Cmd.Parameters.AddWithValue("@DataPedido", pedido.Date);
 
             try
@@ -352,13 +361,13 @@ namespace crudCJ301116X
         {
 
             Cmd.Connection = Con.ReturnConnection();
-            Cmd.CommandText = @"UPDATE Pizza SET Valor = @Valor, Quantidade = @Quantidade, IdPizza = @IdPizza, DataPedido = @DataPedido WHERE Id = @Id";
+            Cmd.CommandText = @"UPDATE Pedidos SET Valor = @Valor, Quantidade = @Quantidade, Id_Pizza = @Id_Pizza, DataPedido = @DataPedido WHERE Id = @Id";
 
 
             Cmd.Parameters.AddWithValue("@Id", pedidoEditado.Id);
             Cmd.Parameters.AddWithValue("@Valor", pedidoEditado.Valor);
             Cmd.Parameters.AddWithValue("@Quantidade", pedidoEditado.Quantidade);
-            Cmd.Parameters.AddWithValue("@IdPizza", pedidoEditado.Idpizza);
+            Cmd.Parameters.AddWithValue("@Id_Pizza", pedidoEditado.Idpizza);
             Cmd.Parameters.AddWithValue("@DataPedido", pedidoEditado.Date);
 
 
@@ -398,5 +407,95 @@ namespace crudCJ301116X
                 Con.CloseConnection();
             }
         }
+
+        public List<PedidoFinal> ListarTodosPedidosFinais()
+        {
+
+            Cmd.Connection = Con.ReturnConnection();
+
+
+            Cmd.CommandText = @"SELECT FimPedido.Id, FimPedido.QuantItens, FimPedido.ValorTotal, FimPedido.MetodoPag, FimPedido.Troco, Pedidos.DataPedido
+            FROM FimPedido INNER JOIN Pedidos ON FimPedido.Id_Pedido = Pedidos.Id ORDER BY Pedidos.DataPedido";
+
+
+
+            List<PedidoFinal> listaDePedidojoin = new List<PedidoFinal>();
+
+            try
+            {
+                SqlDataReader rd = Cmd.ExecuteReader();
+
+                while (rd.Read())
+                {
+                    PedidoFinal pedidofinal = new PedidoFinal((int)rd["Id"], (int)rd["QuantItens"], (decimal)rd["ValorTotal"],
+                    (string)rd["MetodoPag"], (decimal)rd["Troco"], (DateTime)rd["DataPedido"]);
+
+
+                    listaDePedidojoin.Add(pedidofinal);
+                }
+
+                rd.Close();
+            }
+            catch (Exception err)
+            {
+                throw new Exception("Erro: Problemas ao realizar leitura dos pedidos finais no banco.\n" + err.Message);
+            }
+            finally
+            {
+                Con.CloseConnection();
+            }
+
+            return listaDePedidojoin;
+        }
+
+        public void InserirFinal(PedidoFinal pedidofinal)
+        {
+
+            Cmd.Connection = Con.ReturnConnection();
+            Cmd.CommandText = "INSERT INTO FimPedido VALUES (@Quantidade, @ValorTotal, @MetodoPag, @Troco, @Id_Pedido)";
+
+
+            Cmd.Parameters.AddWithValue("@Quantidade", pedidofinal.Quantidade);
+            Cmd.Parameters.AddWithValue("@ValorTotal", pedidofinal.ValorFinal);          
+            Cmd.Parameters.AddWithValue("@MetodoPag", pedidofinal.MetodoPag);
+            Cmd.Parameters.AddWithValue("@Troco", pedidofinal.Troco);
+            Cmd.Parameters.AddWithValue("@Id_Pedido", pedidofinal.IdPedido);
+
+            try
+            {
+                Cmd.ExecuteNonQuery();
+            }
+            catch (Exception err)
+            {
+                throw new Exception("Erro: Problemas ao inserir fim do pedido no banco.\n" + err.Message);
+            }
+            finally
+            {
+                Con.CloseConnection();
+            }
+        }
+
+        public void ExcluirFim(int idFim)
+        {
+            Cmd.Connection = Con.ReturnConnection();
+            Cmd.CommandText = "DELETE FROM FimPedido WHERE Id = @Id";
+
+
+            Cmd.Parameters.AddWithValue("@Id", idFim);
+
+            try
+            {
+                Cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Erro: Problemas ao excluir");
+            }
+            finally
+            {
+                Con.CloseConnection();
+            }
+        }
+
     }
 }

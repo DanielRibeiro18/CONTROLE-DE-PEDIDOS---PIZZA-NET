@@ -258,7 +258,7 @@ namespace crudCJ301116X
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message, "OCORREU UM ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(err.Message, "OCORREU UM ERRO AO CARREGAR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -289,6 +289,11 @@ namespace crudCJ301116X
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rdbMasculino_CheckedChanged(object sender, EventArgs e)
         {
 
         }

@@ -8,28 +8,29 @@ namespace crudCJ301116X
 {
     internal class Pizza
     {
-        //SABOR, TAMANHO, NUMERO DE FATIAS, PREÇO, IMAGEM
 
         private int _id;
         private string _sabor;
         private string _tamanho;
         private string _numerofatia;
-        private string _preco;
+        private decimal _preco;
         private string _disponibilidade;
-        
+        private string _imagem;
 
-        public Pizza(string sabor, string tamanho, string numerofatia, string preco, string disponibilidade)
+        public Pizza(string sabor, string tamanho, string numerofatia, decimal preco, string disponibilidade, string imagem)
         {
             Sabor = sabor;
             Tamanho = tamanho;
             NumeroFatia = numerofatia;
-            Preco = preco;
+            _preco = preco;
             Disponibilidade = disponibilidade;
+            Imagem = imagem;
 
 
         }
-        public Pizza(int id, string sabor, string tamanho, string numerofatia, string preco, string disponibilidade) :
-            this(sabor, tamanho, numerofatia, preco, disponibilidade)
+
+        public Pizza(int id, string sabor, string tamanho, string numerofatia, decimal preco, string disponibilidade, string imagem) :
+            this(sabor, tamanho, numerofatia, preco, disponibilidade, imagem)
         {
             _id = id;
         }
@@ -78,18 +79,10 @@ namespace crudCJ301116X
         }
 
         //Validação do Preço
-        public string Preco
+        public decimal Preco
         {
             get { return _preco; }
-            set
-            {
-                if (string.IsNullOrEmpty(value))
-                    throw new Exception("O preço informado não é um texto válido");
-                _preco = value;
-            }
         }
-
-
 
         public string Disponibilidade
         {
@@ -99,6 +92,17 @@ namespace crudCJ301116X
                 if (string.IsNullOrEmpty(value))
                     throw new Exception("A disponibilidade informada não é válida");
                 _disponibilidade = value;
+            }
+        }
+
+        public string Imagem
+        {
+            get { return _imagem; }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                    throw new Exception("A imagem informada não é válida");
+                _imagem = value;
             }
         }
 
